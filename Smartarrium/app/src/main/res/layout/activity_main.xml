@@ -11,7 +11,20 @@
         android:layout_height="wrap_content" />
 
 
-
+    <Button
+        android:id="@+id/lampButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:background="@color/black"
+        android:text="On/Off Lamp" />
+    <Button
+        android:id="@+id/scheduleButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:background="@color/black"
+        android:text="Set Schedule" />
 
 
 </LinearLayout>

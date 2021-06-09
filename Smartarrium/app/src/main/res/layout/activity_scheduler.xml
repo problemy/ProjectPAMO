@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical" >
+    tools:context=".MainActivity">
+
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:textSize="40dp"
+        android:text="Set schedule "/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:textSize="20dp"
+        android:text="Sunrise hour: "/>
+    <EditText
+        android:layout_width="120dp"
+        android:layout_gravity="center"
+        android:layout_height="25dp"
+        />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:textSize="20dp"
+        android:text="Sunrise minute: "/>
+    <EditText
+        android:layout_width="120dp"
+        android:layout_gravity="center"
+        android:layout_height="25dp"
+        />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:textSize="20dp"
+        android:text="Temperature: "/>
+    <EditText
+        android:layout_width="120dp"
+        android:layout_gravity="center"
+        android:layout_height="25dp"
+        />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:textSize="20dp"
+        android:text="Lamp: "/>
+    <EditText
+        android:layout_width="120dp"
+        android:layout_gravity="center"
+        android:layout_height="25dp"
+        />
+
+
+
+
+
+
+</LinearLayout>
