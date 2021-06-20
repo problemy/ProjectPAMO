@@ -46,18 +46,14 @@ public class MainActivity extends AppCompatActivity {
    private TextView textViewResult;
 
     String API_KEY = "Bearer eyJhbGciOiJFUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6ImEyN2ZhZTQ2LTE3YzEtNDhhYS1hNjVlLTA0ZDBiZTA5MjhhYSJ9.eyJjbGllbnRfaWQiOiJsb2NhbC10b2tlbiIsInJvbGUiOiJhY2Nlc3NfdG9rZW4iLCJzY29wZSI6Ii90aGluZ3M6cmVhZHdyaXRlIiwiaWF0IjoxNjE4Njc0MzU4LCJpc3MiOiJodHRwczovL3NtYXJ0YXJyaXVtLndlYnRoaW5ncy5pbyJ9.iQP5YrGfuE2I84faNmNgeRg3i8KWM7psansnWb2YqumXgcUkQnORP9T_oy5_StIDkPiCUPM3GTtH7tRMKhGSrQ";
-    private boolean lamp;
-    private int humidity;
-    private double temperature;
-    private double pressure;
-    private boolean motion;
-    private boolean heating;
-    private int sunriseHour;
-    private int sunriseMinute;
-    private int nightfallHour;
-    private int sunsetMinute;
-    private double dayTemperature;
-    private double nightTemperature;
+    private boolean Lamp;
+    private int Humidity;
+    private double Temperature;
+    private double Pressure;
+    private boolean Motion;
+    private boolean Heating;
+    private int SunriseHour;
+    private int SunriseMinute;
 
 
     @Override
@@ -65,16 +61,15 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         textViewResult = findViewById(R.id.text_view_result);
-        Button lampBtn = findViewById(R.id.lampButton);
-        Button scheduleBtn =  findViewById(R.id.scheduleButton);
-        Button refreshBtn = findViewById(R.id.refreshButton);
+        Button lampBtn = (Button) findViewById(R.id.lampButton);
+        Button scheduleBtn = (Button) findViewById(R.id.scheduleButton);
         getSensors();
 
 
         lampBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                updateLamp();
+                updateSensors();
                 updateHeating();
             }
         });
@@ -82,9 +77,6 @@ public class MainActivity extends AppCompatActivity {
             Intent scheduleIntent = new Intent(MainActivity.this, Scheduler.class);
             startActivity(scheduleIntent);
 
-        });
-        refreshBtn.setOnClickListener(view -> {
-            getSensors();
         });
     }
 
@@ -108,31 +100,24 @@ public class MainActivity extends AppCompatActivity {
 
 
                     Sensor sensor = response.body();
-                    pressure = sensor.getPressure();
-                    humidity = sensor.getHumidity();
-                    temperature = sensor.getTemperature();
-                    motion = sensor.isMotion();
-                    heating = sensor.isHeating();
-                    lamp = sensor.isLamp();
-                    sunriseHour = sensor.getSunriseHour();
-                    sunriseMinute = sensor.getSunriseMinute();
-                    nightfallHour = sensor.getNightfallHour();
-                    sunsetMinute = sensor.getNightfallMinute();
-                    dayTemperature = sensor.getTargetDayTemperature();
-                    nightTemperature = sensor.getTargetNightTemperature();
-                 //   Id = sensor.getId();
+                    Pressure = sensor.getPressure();
+                    Humidity = sensor.getHumidity();
+                    Temperature = sensor.getTemperature();
+                    Motion = sensor.isMotion();
+                    Heating = sensor.isHeating();
+                    Lamp = sensor.isLamp();
+                    SunriseHour = sensor.getSunriseHour();
+                    SunriseMinute = sensor.getSunriseMinute();
 
-                            String content ="\n\nWarunki panujące w terrarium:";
-                            content += "\n\nCiśnienie: " + sensor.getPressure()+ "\n\n";
-                            content += "Wilgotność: " + sensor.getHumidity()+ "%\n\n";
-                            content += "Temperatura: " + sensor.getTemperature()+ "\n\n";
-                            content += "Czy wykryto ruch: " + sensor.isMotion()+ "\n\n";
-                            content += "Ocieplenie: " + sensor.isHeating()+ "\n\n";
-                            content += "Oświetlenie: " + sensor.isLamp()+ "\n\n";
-                            content += "Godzina rozpoczęcia dnia: " + sensor.getSunriseHour()+":"+ sensor.getSunriseMinute()+ "\n\n";
-                            content += "Rozpoczęcie nocy : " + sensor.getNightfallHour()+":"+sensor.getNightfallMinute()+ "\n\n";
-                            content += "Temperatura w dzień: " + sensor.getTargetDayTemperature()+ "\n\n";
-                            content += "Temperatura w nocy: " + sensor.getTargetNightTemperature()+ "\n\n";
+                            String content ="";
+                            content += "Pressure: " + sensor.getPressure()+ "\n\n";
+                            content += "Humidity: " + sensor.getHumidity()+ "\n\n";
+                            content += "temperature: " + sensor.getTemperature()+ "\n\n";
+                            content += "motion: " + sensor.isMotion()+ "\n\n";
+                            content += "heating: " + sensor.isHeating()+ "\n\n";
+                            content += "lamp: " + sensor.isLamp()+ "\n\n";
+                            content += "sunriseHour: " + sensor.getSunriseHour()+ "\n\n";
+                            content += "sunriseMinute: " + sensor.getSunriseMinute()+ "\n\n";
                             textViewResult.setText(content);
 
                 }
@@ -144,15 +129,14 @@ public class MainActivity extends AppCompatActivity {
                 }
             });
         }
-    private void updateLamp()  {
+    private void updateSensors()  {
 
-        Sensor sensor = new Sensor(lamp,heating,motion,pressure,temperature,humidity,sunriseHour,sunriseMinute,nightfallHour,sunsetMinute,dayTemperature,nightTemperature);
+        Sensor sensor = new Sensor(Lamp,Heating,Motion,Pressure,Temperature,Humidity,SunriseHour,SunriseMinute);
 
-        lamp = sensor.setLamp(true);
+        Lamp = sensor.setLamp(true);
+        Motion = sensor.setMotion(true);
 
-
-
-        Call<Sensor> call = RetrofitClient.getInstance().getMyApi().updateLamp(sensor);
+        Call<Sensor> call = RetrofitClient.getInstance().getMyApi().updateSensors(sensor);
         call.enqueue(new Callback<Sensor>() {
             @Override
             public void onResponse(Call<Sensor> call, Response<Sensor> response) {
@@ -161,7 +145,18 @@ public class MainActivity extends AppCompatActivity {
                     return;
                 }
 
-            getSensors();
+//
+//                String content ="";
+//                content += "Pressure: " + sensor.getPressure()+ "\n\n";
+//                content += "Humidity: " + sensor.getHumidity()+ "\n\n";
+//                content += "temperature: " + sensor.getTemperature()+ "\n\n";
+//                content += "motion: " + sensor.isMotion()+ "\n\n";
+//                content += "heating: " + sensor.isHeating()+ "\n\n";
+//                content += "lamp: " + sensor.isLamp()+ "\n\n";
+//                content += "sunriseHour: " + sensor.getSunriseHour()+ "\n\n";
+//                content += "sunriseMinute: " + sensor.getSunriseMinute()+ "\n\n";
+//                textViewResult.setText(content);
+
             }
 
             @Override
@@ -172,10 +167,10 @@ public class MainActivity extends AppCompatActivity {
         });
     }
     private void updateHeating() {
-        Sensor sensor = new Sensor(lamp,heating,motion,pressure,temperature,humidity,sunriseHour,sunriseMinute,nightfallHour,sunsetMinute,dayTemperature,nightTemperature);
+        Sensor sensor = new Sensor(Lamp,Heating,Motion,Pressure,Temperature,Humidity,SunriseHour,SunriseMinute);
 
 
-        heating = sensor.setHeating(true);
+       Heating = sensor.setHeating(true);
 
 
 

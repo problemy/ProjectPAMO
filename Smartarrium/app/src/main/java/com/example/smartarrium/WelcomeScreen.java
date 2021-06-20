@@ -19,9 +19,16 @@ public class WelcomeScreen extends AppCompatActivity {
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run(){
-                Intent homeIntent = new Intent(WelcomeScreen.this, MainActivity.class);
-                startActivity(homeIntent);
-                finish();
+                if(Controller.getId()>0) {
+                    Intent homeIntent = new Intent(WelcomeScreen.this, MainActivity.class);
+                    startActivity(homeIntent);
+                    finish();
+                } else {
+                    Intent homeIntent = new Intent(WelcomeScreen.this, ControllerConnector.class);
+                    startActivity(homeIntent);
+                    finish();
+                }
+
             }
         },SPLASH_TIME_OUT);
     }

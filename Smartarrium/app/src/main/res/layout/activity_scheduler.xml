@@ -2,134 +2,59 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:orientation="vertical" ><![CDATA[
-    tools:context=".ac">
+    android:orientation="vertical" >
+    tools:context=".MainActivity">
 
-    ]]><TextView
+    <TextView
         android:id="@+id/title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:textSize="3dp"
-        android:text="@string/set_scheduler"/>
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginTop="10dp"
-        android:text="@string/start_day_hour"
-        android:textSize="20dp" />
-
-    <EditText
-        android:id="@+id/SunriseHourEt"
-        android:layout_width="50dp"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginTop="10dp"
-        android:autofillHints="Godzina"
-        android:inputType="number"
-        android:textColor="@color/black" />
-
+        android:textSize="40dp"
+        android:text="Set schedule "/>
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:textSize="20dp"
-        android:layout_marginTop="10dp"
-        android:text="@string/start_day_minute"/>
+        android:text="Sunrise hour: "/>
     <EditText
-        android:id="@+id/SunriseMinuteEt"
-        android:layout_width="50dp"
+        android:layout_width="120dp"
         android:layout_gravity="center"
-        android:layout_height="wrap_content"
-        android:inputType="number"
-        android:layout_marginTop="10dp"
-        android:textColor="@color/black"
+        android:layout_height="25dp"
         />
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:textSize="20dp"
-        android:layout_marginTop="10dp"
-        android:text="@string/day_temperature"/>
+        android:text="Sunrise minute: "/>
     <EditText
-        android:id="@+id/DayTemperatureEt"
-        android:layout_width="50dp"
+        android:layout_width="120dp"
         android:layout_gravity="center"
-        android:layout_height="wrap_content"
-        android:inputType="number"
-        android:layout_marginTop="10dp"
-        android:textColor="@color/black"
-        />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginTop="10dp"
-        android:textSize="15dp"
-        android:text="@string/start_night_hour"/>
-    <EditText
-        android:id="@+id/SunsetHourEt"
-        android:layout_width="50dp"
-        android:layout_gravity="center"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:textColor="@color/black"
-        android:inputType="number"
-        />
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginTop="10dp"
-        android:textSize="20dp"
-        android:text="@string/start_night_minute"/>
-    <EditText
-        android:id="@+id/SunsetMinuteEt"
-        android:layout_width="50dp"
-        android:layout_gravity="center"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:inputType="number"
-        android:textColor="@color/black"
+        android:layout_height="25dp"
         />
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:textSize="20dp"
-        android:layout_marginTop="10dp"
-        android:text="@string/night_temperature"/>
+        android:text="Temperature: "/>
     <EditText
-        android:id="@+id/NightTemperatureEt"
-        android:layout_width="50dp"
+        android:layout_width="120dp"
         android:layout_gravity="center"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:inputType="number"
-        android:textColor="@color/black"
+        android:layout_height="25dp"
         />
-
-
-    <Button
-        android:id="@+id/Submit"
-        android:layout_height="wrap_content"
-        android:layout_width="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginTop="10dp"
-        android:text="@string/set" />
-
     <TextView
-        android:id="@+id/formResult"
         android:layout_width="wrap_content"
-        android:layout_marginTop="10dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:textSize="20dp"
-        android:textColor="@color/black"
+        android:text="Lamp: "/>
+    <EditText
+        android:layout_width="120dp"
+        android:layout_gravity="center"
+        android:layout_height="25dp"
         />
 
 
