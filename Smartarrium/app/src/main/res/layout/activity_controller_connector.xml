@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical"
+    tools:visibility="visible">
+    tools:context=".ControllerConnector">
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginBottom="20px"
+        android:text="Połącz się ze sterownikiem"
+        tools:layout_editor_absoluteX="189dp"
+        tools:layout_editor_absoluteY="106dp" />
+
+    <Button
+        android:id="@+id/controllerForm"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:background="@color/black"
+        android:text="Wpisz dane ręcznie"
+        android:onClick="showForm"/>
+
+    <TextView
+        android:id="@+id/ipLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="Podaj ip sterownika:"
+        android:textSize="20dp"
+        android:visibility="gone" />
+
+    <EditText
+        android:id="@+id/ipInput"
+        android:layout_width="120dp"
+        android:layout_height="25dp"
+        android:layout_gravity="center"
+        android:visibility="gone" />
+
+    <TextView
+        android:id="@+id/nameLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="Podaj nazwę sterownika:"
+        android:textSize="20dp"
+        android:visibility="gone" />
+
+    <EditText
+        android:id="@+id/nameInput"
+        android:layout_width="120dp"
+        android:layout_height="25dp"
+        android:layout_gravity="center"
+        android:visibility="gone" />
+
+    <TextView
+        android:id="@+id/apiLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="Podaj klucz Webthings API "
+        android:textSize="20dp"
+        android:visibility="gone" />
+
+    <EditText
+        android:id="@+id/apiInput"
+        android:layout_width="120dp"
+        android:layout_height="25dp"
+        android:layout_gravity="center"
+        android:visibility="gone" />
+    <Button
+        android:id="@+id/submitForm"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:background="@color/black"
+        android:visibility="gone"
+        android:text="@string/connect" />
+
+    <Button
+        android:id="@+id/scanQrCode"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:background="@color/black"
+        android:visibility="visible"
+        android:text="Zeskanuj kod QR"
+        android:onClick="goToQrCodeScanner"/>
+
+</LinearLayout>
