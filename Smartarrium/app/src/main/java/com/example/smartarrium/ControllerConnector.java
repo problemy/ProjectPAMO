@@ -12,7 +12,7 @@ import android.widget.TextView;
 public class ControllerConnector extends AppCompatActivity {
     EditText ipInput, apiKeyInput, nameInput;
     TextView ipLabel, apiKeyLabel, nameLabel;
-    Button submit, scanQR;
+    Button submit, controllerForm;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -27,7 +27,7 @@ public class ControllerConnector extends AppCompatActivity {
         nameInput = findViewById(R.id.nameInput);
 
         submit = findViewById(R.id.submitForm);
-        scanQR = findViewById(R.id.scanQrCode);
+        controllerForm = findViewById(R.id.controllerForm);
     }
 
     public void showForm(View view){
@@ -38,7 +38,7 @@ public class ControllerConnector extends AppCompatActivity {
         nameLabel.setVisibility(View.VISIBLE);
         nameInput.setVisibility(View.VISIBLE);
         submit.setVisibility(View.VISIBLE);
-        scanQR.setVisibility(View.GONE);
+        controllerForm.setVisibility(View.GONE);
     };
 
     public void goToQrCodeScanner(View view){

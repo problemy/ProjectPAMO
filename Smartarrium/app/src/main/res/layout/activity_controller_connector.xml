@@ -5,83 +5,32 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:orientation="vertical"
+    android:paddingTop="55dp"
     tools:visibility="visible">
     tools:context=".ControllerConnector">
 
     <TextView
         android:id="@+id/textView"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginBottom="20px"
-        android:text="Połącz się ze sterownikiem"
+        android:layout_marginBottom="20dp"
+        android:text="@string/po_cz_si_ze_sterownikiem"
+        android:textSize="30sp"
         tools:layout_editor_absoluteX="189dp"
-        tools:layout_editor_absoluteY="106dp" />
+        tools:layout_editor_absoluteY="106dp"
+        tools:textAlignment="center" />
 
     <Button
         android:id="@+id/controllerForm"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
+        android:layout_marginTop="25dp"
+        android:layout_marginBottom="10dp"
         android:background="@color/black"
-        android:text="Wpisz dane ręcznie"
-        android:onClick="showForm"/>
-
-    <TextView
-        android:id="@+id/ipLabel"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:text="Podaj ip sterownika:"
-        android:textSize="20dp"
-        android:visibility="gone" />
-
-    <EditText
-        android:id="@+id/ipInput"
-        android:layout_width="120dp"
-        android:layout_height="25dp"
-        android:layout_gravity="center"
-        android:visibility="gone" />
-
-    <TextView
-        android:id="@+id/nameLabel"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:text="Podaj nazwę sterownika:"
-        android:textSize="20dp"
-        android:visibility="gone" />
-
-    <EditText
-        android:id="@+id/nameInput"
-        android:layout_width="120dp"
-        android:layout_height="25dp"
-        android:layout_gravity="center"
-        android:visibility="gone" />
-
-    <TextView
-        android:id="@+id/apiLabel"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:text="Podaj klucz Webthings API "
-        android:textSize="20dp"
-        android:visibility="gone" />
-
-    <EditText
-        android:id="@+id/apiInput"
-        android:layout_width="120dp"
-        android:layout_height="25dp"
-        android:layout_gravity="center"
-        android:visibility="gone" />
-    <Button
-        android:id="@+id/submitForm"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:background="@color/black"
-        android:visibility="gone"
-        android:text="@string/connect" />
+        android:onClick="showForm"
+        android:text="@string/wpisz_dane_r_cznie" />
 
     <Button
         android:id="@+id/scanQrCode"
@@ -89,8 +38,82 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:background="@color/black"
+        android:onClick="goToQrCodeScanner"
+        android:text="@string/zeskanuj_kod_qr"
         android:visibility="visible"
-        android:text="Zeskanuj kod QR"
-        android:onClick="goToQrCodeScanner"/>
+        tools:layout_marginTop="25dp" />
+
+
+    <TextView
+        android:id="@+id/ipLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="10dp"
+        android:text="@string/podaj_ip_sterownika"
+        android:textSize="20sp"
+        android:visibility="gone" />
+
+    <EditText
+        android:id="@+id/ipInput"
+        android:layout_width="120dp"
+        android:layout_height="25dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="10dp"
+        android:inputType="text"
+        android:textSize="20sp"
+        android:visibility="gone" />
+
+    <TextView
+        android:id="@+id/nameLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="10dp"
+        android:text="@string/podaj_nazw_sterownika"
+        android:textSize="20sp"
+        android:visibility="gone" />
+
+    <EditText
+        android:id="@+id/nameInput"
+        android:layout_width="120dp"
+        android:layout_height="25dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="10dp"
+        android:autofillHints=""
+        android:inputType="text"
+        android:textSize="20sp"
+        android:visibility="gone" />
+
+    <TextView
+        android:id="@+id/apiLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="10dp"
+        android:text="@string/podaj_klucz_webthings_api"
+        android:textSize="20sp"
+        android:visibility="gone" />
+
+    <EditText
+        android:id="@+id/apiInput"
+        android:layout_width="120dp"
+        android:layout_height="25dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="10dp"
+        android:autofillHints="klucz api wygenerujesz za pomocą bramki IoT"
+        android:inputType="text"
+        android:textSize="20sp"
+        android:visibility="gone" />
+
+    <Button
+        android:id="@+id/submitForm"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:background="@color/black"
+        android:text="@string/connect"
+        android:visibility="gone" />
+
 
 </LinearLayout>

@@ -12,4 +12,10 @@
     <string name="night_temperature">Temperatura w nocy:</string>
     <string name="set">Ustaw</string>
     <string name="connect">Połącz się</string>
+    <string name="podaj_ip_sterownika">Podaj ip sterownika:</string>
+    <string name="zeskanuj_kod_qr">Zeskanuj kod QR</string>
+    <string name="po_cz_si_ze_sterownikiem">Połącz się ze sterownikiem</string>
+    <string name="wpisz_dane_r_cznie">Wpisz dane ręcznie</string>
+    <string name="podaj_klucz_webthings_api">Podaj klucz Webthings API</string>
+    <string name="podaj_nazw_sterownika">Podaj nazwę sterownika:</string>
 </resources>
