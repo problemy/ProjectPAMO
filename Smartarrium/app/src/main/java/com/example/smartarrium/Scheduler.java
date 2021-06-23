@@ -16,9 +16,11 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class Scheduler extends AppCompatActivity {
-    EditText SunriseHour,SunriseMinute,DayTemperature, SunsetHour,SunsetMinute,NightTemperature;
+    EditText SunriseHour,SunriseMinute,DayTemperature, SunsetHour,SunsetMinute,
+            NightTemperature;
     Button submitBtn;
     TextView formResult;
+    int maxDayTemperature, maxNightTemperature;
     private boolean lamp;
     private int humidity;
     private double temperature;
@@ -46,20 +48,42 @@ public class Scheduler extends AppCompatActivity {
         formResult = findViewById(R.id.formResult);
 
 
-
         submitBtn.setOnClickListener(view -> {
-            validate(SunriseHour, SunriseMinute,DayTemperature, SunsetHour,SunsetMinute,NightTemperature);
+            //validate(SunriseHour, SunriseMinute,DayTemperature, SunsetHour,SunsetMinute,
+                   // NightTemperature);
+            int sunriseHour = Integer.parseInt(SunriseHour.getText().toString());
+            int sunriseMinute = Integer.parseInt(SunriseMinute.getText().toString());
+            int sunsetMinute = Integer.parseInt(SunsetMinute.getText().toString());
+            int sunsetHour = Integer.parseInt(SunsetHour.getText().toString());
+            int dayTemperature = Integer.parseInt(DayTemperature.getText().toString());
+            int nightTemperature = Integer.parseInt(NightTemperature.getText().toString());
+            String msg = ScheduleFormValidator.validate(sunriseHour, sunriseMinute,
+                    dayTemperature, sunsetHour,sunsetMinute, nightTemperature);
+            if( msg == "Sukces!"){
+                this.setSchedule();
+                Toast.makeText(getApplicationContext(),
+                        msg,
+                        Toast.LENGTH_LONG)
+                        .show();
+            } else {
+                Toast.makeText(getApplicationContext(),
+                        msg,
+                        Toast.LENGTH_LONG)
+                        .show();
+            }
 
 
 
         });
 
     }
-    private void validate(EditText SunriseHourEt, EditText SunriseMinuteEt, EditText DayTemperatureEt, EditText SunsetHourEt, EditText SunsetMinuteEt, EditText NightTemperatureEt) {
+    String validate(EditText SunriseHourEt, EditText SunriseMinuteEt, EditText DayTemperatureEt,
+                    EditText SunsetHourEt, EditText SunsetMinuteEt, EditText NightTemperatureEt) {
         String content = "";
 
-        if (SunriseHourEt.length() < 1 || SunriseMinuteEt.length() < 1 || SunsetHourEt.length() < 1 ||
-                SunsetMinuteEt.length() < 1 || DayTemperatureEt.length() < 1 || NightTemperatureEt.length() < 1) {
+        if (SunriseHourEt.length() < 1 || SunriseMinuteEt.length() < 1 || SunsetHourEt.length() < 1
+                || SunsetMinuteEt.length() < 1 || DayTemperatureEt.length() < 1
+                || NightTemperatureEt.length() < 1) {
 
             content += "Nie kombinuj, wypełnij wszystkie pola";
 
@@ -92,7 +116,7 @@ public class Scheduler extends AppCompatActivity {
                 content += "Temperatura nocy musi być z zakresu 0-50 ";
             } else {
 
-                content += "Success!";
+                content += "Sukces!";
                 this.setSunriseHour();
                 this.setSunriseMinute();
                 this.setNightfallHour();
@@ -109,10 +133,17 @@ public class Scheduler extends AppCompatActivity {
                     content,
                     Toast.LENGTH_LONG)
                     .show();
-
+            return content;
 
     }
-
+    private void setSchedule(){
+        this.setSunriseHour();
+        this.setSunriseMinute();
+        this.setNightfallHour();
+        this.setNightfallMinute();
+        this.setTargetDayTemperature();
+        this.setTargetNightTemperature();
+    }
     private void setTargetNightTemperature() {
         double targetNightTemperature = Double.parseDouble(NightTemperature.getText().toString());
         Sensor sensor = new Sensor(lamp,heating,motion,pressure,temperature,humidity,sunriseHour,
