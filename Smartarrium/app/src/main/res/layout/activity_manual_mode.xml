@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical" >
+  <TextView
+      android:id="@+id/manualTitle"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_gravity="center"
+      android:textSize="25sp"
+      android:layout_marginTop="10dp"
+      android:text="Tryb manualny"/>
+
+  <TextView
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_gravity="center"
+      android:textSize="15sp"
+      android:layout_marginTop="10dp"
+      android:text="@string/lamp"/>
+  <RadioGroup
+      android:id="@+id/RadioLamp"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:orientation="horizontal"
+      android:checkedButton="@id/lampOff"
+      android:layout_gravity="center_horizontal">
+  <RadioButton
+      android:id="@+id/lampOn"
+      android:layout_width="120dp"
+      android:layout_height="wrap_content"
+      android:layout_gravity="center_horizontal"
+      android:text="@string/on">
+  </RadioButton>
+  <RadioButton
+      android:id="@+id/lampOff"
+      android:layout_width="120dp"
+      android:layout_height="wrap_content"
+      android:layout_gravity="center_horizontal"
+      android:text="@string/off">
+  </RadioButton>
+  </RadioGroup>
+  <TextView
+      android:labelFor="@+id/TemperatureEt"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_gravity="center"
+      android:textSize="15sp"
+      android:layout_marginTop="10dp"
+      android:text="@string/temperature"/>
+  <EditText
+      android:id="@+id/TemperatureEt"
+      android:layout_width="50dp"
+      android:layout_gravity="center"
+      android:layout_height="wrap_content"
+      android:inputType="number"
+      android:importantForAutofill="no"
+      android:layout_marginTop="10dp"
+      android:textColor="@color/black"
+      />
+  <Button
+      android:id="@+id/Submit"
+      android:layout_height="wrap_content"
+      android:layout_width="wrap_content"
+      android:layout_gravity="center"
+      android:layout_marginTop="10dp"
+      android:text="@string/set" />
+
+  <TextView
+      android:id="@+id/formResult"
+      android:layout_width="wrap_content"
+      android:layout_marginTop="10dp"
+      android:layout_height="wrap_content"
+      android:layout_gravity="center"
+      android:textSize="20sp"
+      android:textColor="@color/black"
+      />
+
+</LinearLayout>
