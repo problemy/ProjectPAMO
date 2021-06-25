@@ -179,11 +179,6 @@ public class ManualMode extends AppCompatActivity {
         Sensor sensor = new Sensor(lamp,heating,motion,pressure,temperature,humidity,sunriseHour,
                 sunriseMinute,nightfallHour,nightfallMinute,targetDayTemperature,targetNightTemperature,
                 scheduleModeOn);
-        if(sensor.isScheduleModeOn()) {
-            sensor.setScheduleModeOn(false);
-        } else{
-            sensor.setScheduleModeOn(true);
-        }
 
 
         Call<Sensor> call = RetrofitClient.getInstance().getMyApi().updateScheduleMode(sensor);

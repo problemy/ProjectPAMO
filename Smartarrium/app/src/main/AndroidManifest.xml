@@ -14,21 +14,16 @@
         android:supportsRtl="true"
 
         android:theme="@style/Theme.Smartarrium" >
-        <activity android:name=".ManualMode" >
-        </activity>
+        <activity android:name=".ManualMode" > </activity>
         <activity android:name=".Scheduler" />
         <activity android:name=".WelcomeScreen" >
-
-        android:theme="@style/Theme.Smartarrium">
-        <activity android:name=".ScannerQR"></activity>
-        <activity android:name=".ControllerConnector" />
-
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+        <intent-filter>
+            <action android:name="android.intent.action.MAIN" />
+            <category android:name="android.intent.category.LAUNCHER" />
+        </intent-filter>
         </activity>
+        <activity android:name=".ScannerQR"/>
+        <activity android:name=".ControllerConnector" />
         <activity android:name=".MainActivity" />
     </application>
 

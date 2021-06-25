@@ -15,9 +15,7 @@
     <TextView
 
         android:id="@+id/SunriseHour"
-
-        android:labelFor="@+id/SunriseHourEt"
-
+        android:labelFor="@+id/SunriseHourTv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
@@ -37,9 +35,8 @@
         android:textColor="@color/black" />
 
     <TextView
-
         android:id="@+id/SunriseMinute"
-        android:labelFor="@+id/SunriseMinuteEt"
+        android:labelFor="@+id/SunriseMinuteTv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
@@ -58,7 +55,7 @@
          />
     <TextView
         android:id="@+id/DayTemperature"
-        android:labelFor="@+id/DayTemperatureEt"
+        android:labelFor="@+id/DayTemperatureTv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
@@ -78,7 +75,7 @@
 
     <TextView
         android:id="@+id/SunsetHour"
-        android:labelFor="@+id/SunsetHourEt"
+        android:labelFor="@+id/SunsetHourTv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
@@ -97,7 +94,7 @@
         />
     <TextView
         android:id="@+id/nightfallMinute"
-        android:labelFor="@+id/SunsetMinuteEt"
+        android:labelFor="@+id/SunsetMinuteTv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
@@ -116,7 +113,7 @@
         />
     <TextView
         android:id="@+id/temperatureAtNight"
-        android:labelFor="@+id/NightTemperatureEt"
+        android:labelFor="@+id/NightTemperatureTv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
