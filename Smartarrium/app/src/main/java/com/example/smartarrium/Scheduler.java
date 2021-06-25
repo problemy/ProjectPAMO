@@ -100,10 +100,7 @@ public class Scheduler extends AppCompatActivity {
                 this.setNightfallMinute();
                 this.setTargetDayTemperature();
                 this.setTargetNightTemperature();
-<<<<<<< Updated upstream
-                this.updateScheduleMode();
-=======
->>>>>>> Stashed changes
+                updateScheduleMode();
                 new Handler().postDelayed(() -> {
                     Intent homeIntent = new Intent(Scheduler.this, MainActivity.class);
                     startActivity(homeIntent);

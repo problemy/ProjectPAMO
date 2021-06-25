@@ -11,41 +11,10 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"/>
 
-    <TextView
-        android:id="@+id/operatingMode"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"/>
-<<<<<<< Updated upstream
-<!--    <Button-->
-<!--        android:id="@+id/operatingModeButton"-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:layout_gravity="center"-->
-<!--        android:layout_marginBottom="10dp"-->
-<!--        android:background="@color/black"-->
-<!--        android:text="Zmień tryb harmonogram/manualny" />-->
-    <Button
-        android:id="@+id/refreshButton"
-=======
-    <Button
-        android:id="@+id/operatingModeButton"
->>>>>>> Stashed changes
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginBottom="10dp"
-        android:background="@color/black"
-<<<<<<< Updated upstream
-        android:text="@string/refresh" />
-=======
-        android:text="Zmień tryb harmonogram/manualny" />
->>>>>>> Stashed changes
     <Button
         android:id="@+id/refreshButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="15dp"
         android:layout_gravity="center"
         android:background="@color/black"
         android:text="@string/refresh" />
@@ -54,8 +23,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="15dp"
-        android:layout_marginLeft="10dp"
-        android:layout_gravity="left"
+        android:layout_gravity="center"
         android:background="@color/black"
         android:text="@string/set_scheduler" />
 
@@ -65,14 +33,8 @@
         android:id="@+id/manualButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-<<<<<<< Updated upstream
         android:layout_gravity="center"
         android:layout_marginTop="15dp"
-=======
-        android:layout_gravity="right"
-        android:layout_marginTop="-50dp"
-        android:layout_marginRight="10dp"
->>>>>>> Stashed changes
         android:background="@color/black"
         android:text="@string/manual" />
 

@@ -41,53 +41,15 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         textViewResult = findViewById(R.id.text_view_result);
-        operatingMode = findViewById(R.id.operatingMode);
         getSensors();
-<<<<<<< Updated upstream
-       // Button operingModeBtn = findViewById(R.id.operatingModeButton);
-=======
-        Button operingModeBtn = findViewById(R.id.operatingModeButton);
->>>>>>> Stashed changes
         Button scheduleBtn =  findViewById(R.id.scheduleButton);
         Button refreshBtn = findViewById(R.id.refreshButton);
         Button manualBtn = findViewById(R.id.manualButton);
-
-//        if(scheduleModeOn) {
-//            scheduleBtn.setVisibility(View.VISIBLE);
-//            manualBtn.setVisibility(View.GONE);
-//        } else{
-//            scheduleBtn.setVisibility(View.GONE);
-//            manualBtn.setVisibility(View.VISIBLE);
-//        }
-<<<<<<< Updated upstream
         updateScheduleMode();
-//        operingModeBtn.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//            updateScheduleMode();
-//
-//            }
-//        });
-=======
 
-        operingModeBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-            updateScheduleMode();
-
-            }
-        });
->>>>>>> Stashed changes
         scheduleBtn.setOnClickListener(view -> {
             Intent scheduleIntent = new Intent(MainActivity.this, Scheduler.class);
             startActivity(scheduleIntent);
-            finish();
-
-        });
-        manualBtn.setOnClickListener(view -> {
-            Intent manualIntent = new Intent(MainActivity.this, ManualMode.class);
-            startActivity(manualIntent);
-            finish();
 
 
         });
@@ -208,11 +170,7 @@ public class MainActivity extends AppCompatActivity {
                 Toast.makeText(getApplicationContext(), t.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
-<<<<<<< Updated upstream
 
-=======
-        getSensors();
->>>>>>> Stashed changes
 
     }
 
