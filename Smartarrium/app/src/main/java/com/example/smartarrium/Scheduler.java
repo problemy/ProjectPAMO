@@ -5,6 +5,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.Log;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -33,7 +35,6 @@ public class Scheduler extends AppCompatActivity {
     private double targetDayTemperature;
     private double targetNightTemperature;
     private boolean scheduleModeOn;
-    public static int SPLASH_TIME_OUT = 2000;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,22 +51,26 @@ public class Scheduler extends AppCompatActivity {
 
 
         submitBtn.setOnClickListener(view -> {
-            //validate(SunriseHour, SunriseMinute,DayTemperature, SunsetHour,SunsetMinute,
-                   // NightTemperature);
             int sunriseHour = Integer.parseInt(SunriseHour.getText().toString());
             int sunriseMinute = Integer.parseInt(SunriseMinute.getText().toString());
             int sunsetMinute = Integer.parseInt(SunsetMinute.getText().toString());
             int sunsetHour = Integer.parseInt(SunsetHour.getText().toString());
             int dayTemperature = Integer.parseInt(DayTemperature.getText().toString());
             int nightTemperature = Integer.parseInt(NightTemperature.getText().toString());
+            Log.e("achtung", DayTemperature.getText().toString());
             String msg = ScheduleFormValidator.validate(sunriseHour, sunriseMinute,
                     dayTemperature, sunsetHour,sunsetMinute, nightTemperature);
-            if( msg == "Sukces!"){
+
+            if(msg.equals("Sukces!")){
+
                 this.setSchedule();
                 Toast.makeText(getApplicationContext(),
                         msg,
                         Toast.LENGTH_LONG)
                         .show();
+                Intent manualIntent = new Intent(Scheduler.this, MainActivity.class);
+                startActivity(manualIntent);
+
             } else {
                 Toast.makeText(getApplicationContext(),
                         msg,
@@ -78,70 +83,7 @@ public class Scheduler extends AppCompatActivity {
         });
 
     }
-    String validate(EditText SunriseHourEt, EditText SunriseMinuteEt, EditText DayTemperatureEt,
-                    EditText SunsetHourEt, EditText SunsetMinuteEt, EditText NightTemperatureEt) {
-        String content = "";
 
-        if (SunriseHourEt.length() < 1 || SunriseMinuteEt.length() < 1 || SunsetHourEt.length() < 1
-                || SunsetMinuteEt.length() < 1 || DayTemperatureEt.length() < 1
-                || NightTemperatureEt.length() < 1) {
-
-            content += "Nie kombinuj, wypełnij wszystkie pola";
-
-        } else {
-
-            int SunriseHour = Integer.parseInt(SunriseHourEt.getText().toString());
-            int SunriseMinute = Integer.parseInt(SunriseMinuteEt.getText().toString());
-            int SunsetMinute = Integer.parseInt(SunsetMinuteEt.getText().toString());
-            int SunsetHour = Integer.parseInt(SunsetHourEt.getText().toString());
-
-            int DayTemperature = Integer.parseInt(DayTemperatureEt.getText().toString());
-            int NightTemperature = Integer.parseInt(NightTemperatureEt.getText().toString());
-
-            if (SunriseHour < 0 || SunriseHour > 24) {
-                content += "Godzina dnia musi być z zakresu 0-24 \n";
-            }
-            if (SunriseMinute < 0 || SunriseMinute > 59) {
-                content += "Minuta dnia musi być z zakresu 0-59 \n";
-            }
-            if (SunsetHour < 0 || SunsetHour > 24) {
-                content += "Godzina nocy musi być z zakresu 0-24 ";
-            }
-            if (SunsetMinute < 0 || SunsetMinute > 59) {
-                content += "Minuta nocy musi być z zakresu 0-59 ";
-            }
-            if (DayTemperature < 0 || DayTemperature > 50) {
-                content += "Temperatura dnia musi być z zakresu 0-50 ";
-            }
-            if (NightTemperature < 0 || NightTemperature > 50) {
-                content += "Temperatura nocy musi być z zakresu 0-50 ";
-            } else {
-
-                content += "Sukces!";
-                this.setSunriseHour();
-                this.setSunriseMinute();
-                this.setNightfallHour();
-                this.setNightfallMinute();
-                this.setTargetDayTemperature();
-                this.setTargetNightTemperature();
-                updateScheduleMode();
-                new Handler().postDelayed(() -> {
-                    Intent homeIntent = new Intent(Scheduler.this, MainActivity.class);
-                    startActivity(homeIntent);
-                    finish();
-                },SPLASH_TIME_OUT);
-            }
-
-            //formResult.setText(content);
-        }
-
-            Toast.makeText(getApplicationContext(),
-                    content,
-                    Toast.LENGTH_LONG)
-                    .show();
-            return content;
-
-    }
     private void setSchedule(){
         this.setSunriseHour();
         this.setSunriseMinute();
@@ -245,24 +187,24 @@ public class Scheduler extends AppCompatActivity {
     private void setSunriseMinute()  {
 
         int sunriseMinute = Integer.parseInt(SunriseMinute.getText().toString());
-            Sensor sensor = new Sensor(lamp,heating,motion,pressure,temperature,humidity,sunriseHour,
-                    sunriseMinute,nightfallHour,nightfallMinute,targetDayTemperature,targetNightTemperature,scheduleModeOn);
+        Sensor sensor = new Sensor(lamp,heating,motion,pressure,temperature,humidity,sunriseHour,
+                sunriseMinute,nightfallHour,nightfallMinute,targetDayTemperature,targetNightTemperature,scheduleModeOn);
 
-            Call<Sensor> call = RetrofitClient.getInstance().getMyApi().setSunriseMinute(sensor);
-            call.enqueue(new Callback<Sensor>() {
-                @Override
-                public void onResponse(Call<Sensor> call, Response<Sensor> response) {
-                    if (!response.isSuccessful()){
-                        formResult.setText("Code:" + response.code());
-                        return;
-                    }
+        Call<Sensor> call = RetrofitClient.getInstance().getMyApi().setSunriseMinute(sensor);
+        call.enqueue(new Callback<Sensor>() {
+            @Override
+            public void onResponse(Call<Sensor> call, Response<Sensor> response) {
+                if (!response.isSuccessful()){
+                    formResult.setText("Code:" + response.code());
+                    return;
                 }
-                @Override
-                public void onFailure(Call<Sensor> call, Throwable t) {
-                   Toast.makeText(getApplicationContext(), t.getMessage(), Toast.LENGTH_SHORT).show();
-                }
-            });
-        }
+            }
+            @Override
+            public void onFailure(Call<Sensor> call, Throwable t) {
+                Toast.makeText(getApplicationContext(), t.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
 
     private void setSunriseHour()  {
 
@@ -291,11 +233,6 @@ public class Scheduler extends AppCompatActivity {
         Sensor sensor = new Sensor(lamp,heating,motion,pressure,temperature,humidity,sunriseHour,
                 sunriseMinute,nightfallHour,nightfallMinute,targetDayTemperature,targetNightTemperature,
                 scheduleModeOn);
-        if(sensor.isScheduleModeOn()) {
-            sensor.setScheduleModeOn(false);
-        } else{
-            sensor.setScheduleModeOn(true);
-        }
 
 
         Call<Sensor> call = RetrofitClient.getInstance().getMyApi().updateScheduleMode(sensor);

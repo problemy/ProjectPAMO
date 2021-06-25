@@ -18,10 +18,10 @@ public class MainActivity extends AppCompatActivity {
 
     //String API_KEY = "Bearer eyJhbGciOiJFUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6ImEyN2ZhZTQ2LTE3YzEtNDhhYS1hNjVlLTA0ZDBiZTA5MjhhYSJ9.eyJjbGllbnRfaWQiOiJsb2NhbC10b2tlbiIsInJvbGUiOiJhY2Nlc3NfdG9rZW4iLCJzY29wZSI6Ii90aGluZ3M6cmVhZHdyaXRlIiwiaWF0IjoxNjE4Njc0MzU4LCJpc3MiOiJodHRwczovL3NtYXJ0YXJyaXVtLndlYnRoaW5ncy5pbyJ9.iQP5YrGfuE2I84faNmNgeRg3i8KWM7psansnWb2YqumXgcUkQnORP9T_oy5_StIDkPiCUPM3GTtH7tRMKhGSrQ";
     private boolean lamp;
-    private final String lampPrint = "Wyłączone1";
-    private final String motionPrint = "Nie wykryto1";
-    private final String heatingPrint = "Wyłączone1";
-    private final String scheduleModeOnPrint = "Nie wybrano";
+    private  String lampPrint = "";
+    private  String motionPrint = "";
+    private  String heatingPrint = "";
+    private  String scheduleModeOnPrint = "";
     private int humidity;
     private double temperature;
     private double pressure;
@@ -41,11 +41,12 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         textViewResult = findViewById(R.id.text_view_result);
+        operatingMode = findViewById(R.id.operatingMode);
         getSensors();
         Button scheduleBtn =  findViewById(R.id.scheduleButton);
         Button refreshBtn = findViewById(R.id.refreshButton);
         Button manualBtn = findViewById(R.id.manualButton);
-        updateScheduleMode();
+
 
         scheduleBtn.setOnClickListener(view -> {
             Intent scheduleIntent = new Intent(MainActivity.this, Scheduler.class);
@@ -92,30 +93,30 @@ public class MainActivity extends AppCompatActivity {
                     scheduleModeOn = sensor.isScheduleModeOn();
 
                     if(sensor.isLamp()){
-                        String lampPrint = "Włączone"; } else {
-                        String lampPrint = "Wyłączone";
+                         lampPrint = "Włączone"; } else {
+                         lampPrint = "Wyłączone";
                     }
                     if(sensor.isHeating()){
-                        String heatingPrint = "Włączone"; } else {
-                        String heatingPrint = "Wyłączone";
+                        heatingPrint = "Włączone"; } else {
+                        heatingPrint = "Wyłączone";
                     }
                     if(sensor.isMotion()){
-                        String motionPrint = "Wykryto"; } else {
-                        String motionPrint = "Nie wykryto";
+                        motionPrint = "Wykryto"; } else {
+                        motionPrint = "Nie wykryto";
                     }
                     if(sensor.isScheduleModeOn()){
-                        String scheduleModeOnPrint = "Wykryto"; } else {
-                        String scheduleModeOnPrint = "Nie wykryto";
+                        scheduleModeOnPrint = "Wykryto"; } else {
+                        scheduleModeOnPrint = "Nie wykryto";
                     }
 
 
 
                             String content ="\n\nWarunki panujące w terrarium:";
-                            content += "\nCiśnienie: " + pressure+ "\n";
+                            content += "\nTemp. wyspy ciepła: " + pressure+ "\n";
                             content += "Wilgotność: " + humidity+ "%\n";
                             content += "Temperatura: " + temperature+ "\n";
                             content += "Czy wykryto ruch: " + motionPrint+ "\n";
-                            content += "Ocieplenie: " + heatingPrint+ "\n";
+                            content += "Ogrzewanie: " + heatingPrint+ "\n";
                             content += "Oświetlenie: " + lampPrint+ "\n";
                             content += "Godzina rozpoczęcia dnia: " + sunriseHour+":"+ sunriseMinute+ "\n";
                             content += "Rozpoczęcie nocy : " + nightfallHour+":"+nightfallMinute+ "\n";
