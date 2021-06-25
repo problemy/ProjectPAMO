@@ -90,6 +90,7 @@ public class ManualMode extends AppCompatActivity {
                 setTargetNightTemperature();
                 setTargetDayTemperature();
                 setLamp();
+                updateScheduleMode();
                 new Handler().postDelayed(() -> {
                     Intent homeIntent = new Intent(ManualMode.this, MainActivity.class);
                     startActivity(homeIntent);
@@ -173,5 +174,37 @@ public class ManualMode extends AppCompatActivity {
                 }
             });
         }
+    private void updateScheduleMode()  {
+        boolean scheduleModeOn = false;
+        Sensor sensor = new Sensor(lamp,heating,motion,pressure,temperature,humidity,sunriseHour,
+                sunriseMinute,nightfallHour,nightfallMinute,targetDayTemperature,targetNightTemperature,
+                scheduleModeOn);
+        if(sensor.isScheduleModeOn()) {
+            sensor.setScheduleModeOn(false);
+        } else{
+            sensor.setScheduleModeOn(true);
+        }
+
+
+        Call<Sensor> call = RetrofitClient.getInstance().getMyApi().updateScheduleMode(sensor);
+        call.enqueue(new Callback<Sensor>() {
+            @Override
+            public void onResponse(Call<Sensor> call, Response<Sensor> response) {
+                if (!response.isSuccessful()){
+                    formResult.setText("Code:" + response.code());
+                    return;
+                }
+
+            }
+
+            @Override
+            public void onFailure(Call<Sensor> call, Throwable t) {
+
+                Toast.makeText(getApplicationContext(), t.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
+
+
+    }
 
 }

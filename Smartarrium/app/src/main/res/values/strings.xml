@@ -11,4 +11,9 @@
     <string name="start_night_minute">Minutra rozpoczęcia nocy:</string>
     <string name="night_temperature">Temperatura w nocy:</string>
     <string name="set">Ustaw</string>
+    <string name="manual">Tryb manualny</string>
+    <string name="temperature">Temperatura</string>
+    <string name="off">Wyłączona</string>
+    <string name="on">Włączona</string>
+    <string name="lamp">Oświetlenie</string>
 </resources>

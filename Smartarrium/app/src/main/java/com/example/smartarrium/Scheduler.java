@@ -5,7 +5,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
-import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -31,6 +30,8 @@ public class Scheduler extends AppCompatActivity {
     private int nightfallMinute;
     private double targetDayTemperature;
     private double targetNightTemperature;
+    private boolean scheduleModeOn;
+    public static int SPLASH_TIME_OUT = 2000;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -99,7 +100,15 @@ public class Scheduler extends AppCompatActivity {
                 this.setNightfallMinute();
                 this.setTargetDayTemperature();
                 this.setTargetNightTemperature();
-
+<<<<<<< Updated upstream
+                this.updateScheduleMode();
+=======
+>>>>>>> Stashed changes
+                new Handler().postDelayed(() -> {
+                    Intent homeIntent = new Intent(Scheduler.this, MainActivity.class);
+                    startActivity(homeIntent);
+                    finish();
+                },SPLASH_TIME_OUT);
             }
 
             //formResult.setText(content);
@@ -116,7 +125,7 @@ public class Scheduler extends AppCompatActivity {
     private void setTargetNightTemperature() {
         double targetNightTemperature = Double.parseDouble(NightTemperature.getText().toString());
         Sensor sensor = new Sensor(lamp,heating,motion,pressure,temperature,humidity,sunriseHour,
-                sunriseMinute,nightfallHour,nightfallMinute,targetDayTemperature,targetNightTemperature);
+                sunriseMinute,nightfallHour,nightfallMinute,targetDayTemperature,targetNightTemperature,scheduleModeOn);
 
         Call<Sensor> call = RetrofitClient.getInstance().getMyApi().setTargetNightTemperature(sensor);
         call.enqueue(new Callback<Sensor>() {
@@ -138,7 +147,7 @@ public class Scheduler extends AppCompatActivity {
 
         double targetDayTemperature = Double.parseDouble(DayTemperature.getText().toString());
         Sensor sensor = new Sensor(lamp,heating,motion,pressure,temperature,humidity,sunriseHour,
-                sunriseMinute,nightfallHour,nightfallMinute,targetDayTemperature,targetNightTemperature);
+                sunriseMinute,nightfallHour,nightfallMinute,targetDayTemperature,targetNightTemperature,scheduleModeOn);
 
         Call<Sensor> call = RetrofitClient.getInstance().getMyApi().setTargetDayTemperature(sensor);
         call.enqueue(new Callback<Sensor>() {
@@ -160,7 +169,7 @@ public class Scheduler extends AppCompatActivity {
 
         int nightfallMinute = Integer.parseInt(SunriseMinute.getText().toString());
         Sensor sensor = new Sensor(lamp,heating,motion,pressure,temperature,humidity,sunriseHour,
-                sunriseMinute,nightfallHour,nightfallMinute,targetDayTemperature,targetNightTemperature);
+                sunriseMinute,nightfallHour,nightfallMinute,targetDayTemperature,targetNightTemperature,scheduleModeOn);
 
         Call<Sensor> call = RetrofitClient.getInstance().getMyApi().setNightfallMinute(sensor);
         call.enqueue(new Callback<Sensor>() {
@@ -185,7 +194,7 @@ public class Scheduler extends AppCompatActivity {
         int nightfallHour = Integer.parseInt(SunsetHour.getText().toString());
 
         Sensor sensor = new Sensor(lamp,heating,motion,pressure,temperature,humidity,sunriseHour,
-                sunriseMinute,nightfallHour,nightfallMinute,targetDayTemperature,targetNightTemperature);
+                sunriseMinute,nightfallHour,nightfallMinute,targetDayTemperature,targetNightTemperature,scheduleModeOn);
 
         Call<Sensor> call = RetrofitClient.getInstance().getMyApi().setNightfallHour(sensor);
         call.enqueue(new Callback<Sensor>() {
@@ -209,7 +218,7 @@ public class Scheduler extends AppCompatActivity {
 
         int sunriseMinute = Integer.parseInt(SunriseMinute.getText().toString());
             Sensor sensor = new Sensor(lamp,heating,motion,pressure,temperature,humidity,sunriseHour,
-                    sunriseMinute,nightfallHour,nightfallMinute,targetDayTemperature,targetNightTemperature);
+                    sunriseMinute,nightfallHour,nightfallMinute,targetDayTemperature,targetNightTemperature,scheduleModeOn);
 
             Call<Sensor> call = RetrofitClient.getInstance().getMyApi().setSunriseMinute(sensor);
             call.enqueue(new Callback<Sensor>() {
@@ -231,7 +240,7 @@ public class Scheduler extends AppCompatActivity {
 
         int sunriseHour = Integer.parseInt(SunriseHour.getText().toString());
         Sensor sensor = new Sensor(lamp,heating,motion,pressure,temperature,humidity,sunriseHour,
-                sunriseMinute,nightfallHour,nightfallMinute,targetDayTemperature,targetNightTemperature);
+                sunriseMinute,nightfallHour,nightfallMinute,targetDayTemperature,targetNightTemperature,scheduleModeOn);
 
         Call<Sensor> call = RetrofitClient.getInstance().getMyApi().setSunriseHour(sensor);
         call.enqueue(new Callback<Sensor>() {
@@ -248,6 +257,38 @@ public class Scheduler extends AppCompatActivity {
                 Toast.makeText(getApplicationContext(), t.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
+    }
+    private void updateScheduleMode()  {
+        boolean scheduleModeOn = true;
+        Sensor sensor = new Sensor(lamp,heating,motion,pressure,temperature,humidity,sunriseHour,
+                sunriseMinute,nightfallHour,nightfallMinute,targetDayTemperature,targetNightTemperature,
+                scheduleModeOn);
+        if(sensor.isScheduleModeOn()) {
+            sensor.setScheduleModeOn(false);
+        } else{
+            sensor.setScheduleModeOn(true);
+        }
+
+
+        Call<Sensor> call = RetrofitClient.getInstance().getMyApi().updateScheduleMode(sensor);
+        call.enqueue(new Callback<Sensor>() {
+            @Override
+            public void onResponse(Call<Sensor> call, Response<Sensor> response) {
+                if (!response.isSuccessful()){
+                    formResult.setText("Code:" + response.code());
+                    return;
+                }
+
+            }
+
+            @Override
+            public void onFailure(Call<Sensor> call, Throwable t) {
+
+                Toast.makeText(getApplicationContext(), t.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
+
+
     }
 
 

@@ -1,52 +1,27 @@
 package com.example.smartarrium;
 
 import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Base64;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
-
-//import com.android.volley.AuthFailureError;
-//import com.android.volley.Request;
-//import com.android.volley.RequestQueue;
-//import com.android.volley.Response;
-//import com.android.volley.VolleyError;
-//import com.android.volley.toolbox.JsonObjectRequest;
-//import com.android.volley.toolbox.StringRequest;
-//import com.android.volley.toolbox.Volley;
-
-import org.json.JSONException;
-import org.json.JSONObject;
-import org.w3c.dom.Text;
-
-import okhttp3.MediaType;
 import retrofit2.Response;
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
-import retrofit2.http.Body;
-import retrofit2.http.GET;
-import java.io.IOException;
-import java.io.UnsupportedEncodingException;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 import retrofit2.Call;
 import retrofit2.Callback;
-import okhttp3.OkHttpClient;
-import okhttp3.Request;
+
 
 public class MainActivity extends AppCompatActivity {
 
-   private TextView textViewResult;
+   private TextView textViewResult,operatingMode;
 
-    String API_KEY = "Bearer eyJhbGciOiJFUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6ImEyN2ZhZTQ2LTE3YzEtNDhhYS1hNjVlLTA0ZDBiZTA5MjhhYSJ9.eyJjbGllbnRfaWQiOiJsb2NhbC10b2tlbiIsInJvbGUiOiJhY2Nlc3NfdG9rZW4iLCJzY29wZSI6Ii90aGluZ3M6cmVhZHdyaXRlIiwiaWF0IjoxNjE4Njc0MzU4LCJpc3MiOiJodHRwczovL3NtYXJ0YXJyaXVtLndlYnRoaW5ncy5pbyJ9.iQP5YrGfuE2I84faNmNgeRg3i8KWM7psansnWb2YqumXgcUkQnORP9T_oy5_StIDkPiCUPM3GTtH7tRMKhGSrQ";
+    //String API_KEY = "Bearer eyJhbGciOiJFUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6ImEyN2ZhZTQ2LTE3YzEtNDhhYS1hNjVlLTA0ZDBiZTA5MjhhYSJ9.eyJjbGllbnRfaWQiOiJsb2NhbC10b2tlbiIsInJvbGUiOiJhY2Nlc3NfdG9rZW4iLCJzY29wZSI6Ii90aGluZ3M6cmVhZHdyaXRlIiwiaWF0IjoxNjE4Njc0MzU4LCJpc3MiOiJodHRwczovL3NtYXJ0YXJyaXVtLndlYnRoaW5ncy5pbyJ9.iQP5YrGfuE2I84faNmNgeRg3i8KWM7psansnWb2YqumXgcUkQnORP9T_oy5_StIDkPiCUPM3GTtH7tRMKhGSrQ";
     private boolean lamp;
+    private final String lampPrint = "Wyłączone1";
+    private final String motionPrint = "Nie wykryto1";
+    private final String heatingPrint = "Wyłączone1";
+    private final String scheduleModeOnPrint = "Nie wybrano";
     private int humidity;
     private double temperature;
     private double pressure;
@@ -55,9 +30,10 @@ public class MainActivity extends AppCompatActivity {
     private int sunriseHour;
     private int sunriseMinute;
     private int nightfallHour;
-    private int sunsetMinute;
+    private int nightfallMinute;
     private double dayTemperature;
     private double nightTemperature;
+    private boolean scheduleModeOn;
 
 
     @Override
@@ -65,35 +41,66 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         textViewResult = findViewById(R.id.text_view_result);
-        Button lampBtn = findViewById(R.id.lampButton);
+        operatingMode = findViewById(R.id.operatingMode);
+        getSensors();
+<<<<<<< Updated upstream
+       // Button operingModeBtn = findViewById(R.id.operatingModeButton);
+=======
+        Button operingModeBtn = findViewById(R.id.operatingModeButton);
+>>>>>>> Stashed changes
         Button scheduleBtn =  findViewById(R.id.scheduleButton);
         Button refreshBtn = findViewById(R.id.refreshButton);
-        getSensors();
+        Button manualBtn = findViewById(R.id.manualButton);
 
+//        if(scheduleModeOn) {
+//            scheduleBtn.setVisibility(View.VISIBLE);
+//            manualBtn.setVisibility(View.GONE);
+//        } else{
+//            scheduleBtn.setVisibility(View.GONE);
+//            manualBtn.setVisibility(View.VISIBLE);
+//        }
+<<<<<<< Updated upstream
+        updateScheduleMode();
+//        operingModeBtn.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//            updateScheduleMode();
+//
+//            }
+//        });
+=======
 
-        lampBtn.setOnClickListener(new View.OnClickListener() {
+        operingModeBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                updateLamp();
-                updateHeating();
+            updateScheduleMode();
+
             }
         });
+>>>>>>> Stashed changes
         scheduleBtn.setOnClickListener(view -> {
             Intent scheduleIntent = new Intent(MainActivity.this, Scheduler.class);
             startActivity(scheduleIntent);
+            finish();
+
+        });
+        manualBtn.setOnClickListener(view -> {
+            Intent manualIntent = new Intent(MainActivity.this, ManualMode.class);
+            startActivity(manualIntent);
+            finish();
+
+
+        });
+        manualBtn.setOnClickListener(view -> {
+            Intent manualIntent = new Intent(MainActivity.this, ManualMode.class);
+            startActivity(manualIntent);
+
 
         });
         refreshBtn.setOnClickListener(view -> {
             getSensors();
         });
     }
-
-
-    //public void switchLamp(View view){ updateSensors(); }
-
-
-
-
 
     private void getSensors() {
 
@@ -113,27 +120,54 @@ public class MainActivity extends AppCompatActivity {
                     temperature = sensor.getTemperature();
                     motion = sensor.isMotion();
                     heating = sensor.isHeating();
-                    lamp = sensor.isLamp();
+                    lamp =  sensor.isLamp();
                     sunriseHour = sensor.getSunriseHour();
                     sunriseMinute = sensor.getSunriseMinute();
                     nightfallHour = sensor.getNightfallHour();
-                    sunsetMinute = sensor.getNightfallMinute();
+                    nightfallMinute = sensor.getNightfallMinute();
                     dayTemperature = sensor.getTargetDayTemperature();
                     nightTemperature = sensor.getTargetNightTemperature();
-                 //   Id = sensor.getId();
+                    scheduleModeOn = sensor.isScheduleModeOn();
+
+                    if(sensor.isLamp()){
+                        String lampPrint = "Włączone"; } else {
+                        String lampPrint = "Wyłączone";
+                    }
+                    if(sensor.isHeating()){
+                        String heatingPrint = "Włączone"; } else {
+                        String heatingPrint = "Wyłączone";
+                    }
+                    if(sensor.isMotion()){
+                        String motionPrint = "Wykryto"; } else {
+                        String motionPrint = "Nie wykryto";
+                    }
+                    if(sensor.isScheduleModeOn()){
+                        String scheduleModeOnPrint = "Wykryto"; } else {
+                        String scheduleModeOnPrint = "Nie wykryto";
+                    }
+
+
 
                             String content ="\n\nWarunki panujące w terrarium:";
-                            content += "\n\nCiśnienie: " + sensor.getPressure()+ "\n\n";
-                            content += "Wilgotność: " + sensor.getHumidity()+ "%\n\n";
-                            content += "Temperatura: " + sensor.getTemperature()+ "\n\n";
-                            content += "Czy wykryto ruch: " + sensor.isMotion()+ "\n\n";
-                            content += "Ocieplenie: " + sensor.isHeating()+ "\n\n";
-                            content += "Oświetlenie: " + sensor.isLamp()+ "\n\n";
-                            content += "Godzina rozpoczęcia dnia: " + sensor.getSunriseHour()+":"+ sensor.getSunriseMinute()+ "\n\n";
-                            content += "Rozpoczęcie nocy : " + sensor.getNightfallHour()+":"+sensor.getNightfallMinute()+ "\n\n";
-                            content += "Temperatura w dzień: " + sensor.getTargetDayTemperature()+ "\n\n";
-                            content += "Temperatura w nocy: " + sensor.getTargetNightTemperature()+ "\n\n";
+                            content += "\nCiśnienie: " + pressure+ "\n";
+                            content += "Wilgotność: " + humidity+ "%\n";
+                            content += "Temperatura: " + temperature+ "\n";
+                            content += "Czy wykryto ruch: " + motionPrint+ "\n";
+                            content += "Ocieplenie: " + heatingPrint+ "\n";
+                            content += "Oświetlenie: " + lampPrint+ "\n";
+                            content += "Godzina rozpoczęcia dnia: " + sunriseHour+":"+ sunriseMinute+ "\n";
+                            content += "Rozpoczęcie nocy : " + nightfallHour+":"+nightfallMinute+ "\n";
+                            content += "Temperatura w dzień: " + dayTemperature+ "\n";
+                            content += "Temperatura w nocy: " + nightfallHour+ "\n";
                             textViewResult.setText(content);
+
+                            String opMode = " Tryb pracy sterownika:";
+                        if(sensor.isScheduleModeOn()) {
+                            opMode += "\n Tryb harmonogramu\n";
+                        } else{
+                            opMode += "\n Tryb manualny\n";
+                        }
+                        operatingMode.setText(opMode);
 
                 }
 
@@ -144,15 +178,20 @@ public class MainActivity extends AppCompatActivity {
                 }
             });
         }
-    private void updateLamp()  {
+    private void updateScheduleMode()  {
 
-        Sensor sensor = new Sensor(lamp,heating,motion,pressure,temperature,humidity,sunriseHour,sunriseMinute,nightfallHour,sunsetMinute,dayTemperature,nightTemperature);
+        Sensor sensor = new Sensor(lamp,heating,motion,pressure,temperature,humidity,sunriseHour,
+                sunriseMinute,nightfallHour,nightfallMinute,dayTemperature,nightTemperature,
+                scheduleModeOn);
 
-        lamp = sensor.setLamp(true);
+        if(sensor.isScheduleModeOn()) {
+            sensor.setScheduleModeOn(false);
+        } else{
+            sensor.setScheduleModeOn(true);
+        }
 
 
-
-        Call<Sensor> call = RetrofitClient.getInstance().getMyApi().updateLamp(sensor);
+        Call<Sensor> call = RetrofitClient.getInstance().getMyApi().updateScheduleMode(sensor);
         call.enqueue(new Callback<Sensor>() {
             @Override
             public void onResponse(Call<Sensor> call, Response<Sensor> response) {
@@ -160,36 +199,6 @@ public class MainActivity extends AppCompatActivity {
                     textViewResult.setText("Code:" + response.code());
                     return;
                 }
-
-            getSensors();
-            }
-
-            @Override
-            public void onFailure(Call<Sensor> call, Throwable t) {
-
-                Toast.makeText(getApplicationContext(), t.getMessage(), Toast.LENGTH_SHORT).show();
-            }
-        });
-    }
-    private void updateHeating() {
-        Sensor sensor = new Sensor(lamp,heating,motion,pressure,temperature,humidity,sunriseHour,sunriseMinute,nightfallHour,sunsetMinute,dayTemperature,nightTemperature);
-
-
-        heating = sensor.setHeating(true);
-
-
-
-        Call<Sensor> call = RetrofitClient.getInstance().getMyApi().updateHeating(sensor);
-        call.enqueue(new Callback<Sensor>() {
-            @Override
-            public void onResponse(Call<Sensor> call, Response<Sensor> response) {
-                if (!response.isSuccessful()){
-                    textViewResult.setText("Code:" + response.code());
-                    return;
-                }
-
-
-
 
             }
 
@@ -199,6 +208,12 @@ public class MainActivity extends AppCompatActivity {
                 Toast.makeText(getApplicationContext(), t.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
+<<<<<<< Updated upstream
+
+=======
+        getSensors();
+>>>>>>> Stashed changes
+
     }
 
 }

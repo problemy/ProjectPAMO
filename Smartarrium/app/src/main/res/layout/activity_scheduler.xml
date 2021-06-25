@@ -2,40 +2,42 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:orientation="vertical" ><![CDATA[
-    tools:context=".ac">
+    android:orientation="vertical" >
 
-    ]]><TextView
+    <TextView
         android:id="@+id/title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:textSize="3dp"
+        android:textSize="13sp"
         android:text="@string/set_scheduler"/>
 
     <TextView
+        android:labelFor="@+id/SunriseHourEt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginTop="10dp"
         android:text="@string/start_day_hour"
-        android:textSize="20dp" />
+        android:textSize="20sp" />
 
     <EditText
+
         android:id="@+id/SunriseHourEt"
         android:layout_width="50dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginTop="10dp"
-        android:autofillHints="Godzina"
+        android:importantForAutofill="no"
         android:inputType="number"
         android:textColor="@color/black" />
 
     <TextView
+        android:labelFor="@+id/SunriseMinuteEt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:textSize="20dp"
+        android:textSize="20sp"
         android:layout_marginTop="10dp"
         android:text="@string/start_day_minute"/>
     <EditText
@@ -44,14 +46,16 @@
         android:layout_gravity="center"
         android:layout_height="wrap_content"
         android:inputType="number"
+        android:importantForAutofill="no"
         android:layout_marginTop="10dp"
         android:textColor="@color/black"
-        />
+         />
     <TextView
+        android:labelFor="@+id/DayTemperatureEt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:textSize="20dp"
+        android:textSize="20sp"
         android:layout_marginTop="10dp"
         android:text="@string/day_temperature"/>
     <EditText
@@ -60,16 +64,18 @@
         android:layout_gravity="center"
         android:layout_height="wrap_content"
         android:inputType="number"
+        android:importantForAutofill="no"
         android:layout_marginTop="10dp"
         android:textColor="@color/black"
         />
 
     <TextView
+        android:labelFor="@+id/SunsetHourEt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginTop="10dp"
-        android:textSize="15dp"
+        android:textSize="15sp"
         android:text="@string/start_night_hour"/>
     <EditText
         android:id="@+id/SunsetHourEt"
@@ -79,13 +85,15 @@
         android:layout_marginTop="10dp"
         android:textColor="@color/black"
         android:inputType="number"
+        android:importantForAutofill="no"
         />
     <TextView
+        android:labelFor="@+id/SunsetMinuteEt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginTop="10dp"
-        android:textSize="20dp"
+        android:textSize="20sp"
         android:text="@string/start_night_minute"/>
     <EditText
         android:id="@+id/SunsetMinuteEt"
@@ -94,14 +102,16 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:inputType="number"
+        android:importantForAutofill="no"
         android:textColor="@color/black"
         />
     <TextView
+        android:labelFor="@+id/NightTemperatureEt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:textSize="20dp"
-        android:layout_marginTop="10dp"
+        android:textSize="20sp"
+        android:layout_marginTop="10sp"
         android:text="@string/night_temperature"/>
     <EditText
         android:id="@+id/NightTemperatureEt"
@@ -110,6 +120,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:inputType="number"
+        android:importantForAutofill="no"
         android:textColor="@color/black"
         />
 
@@ -128,7 +139,7 @@
         android:layout_marginTop="10dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:textSize="20dp"
+        android:textSize="20sp"
         android:textColor="@color/black"
         />
 
