@@ -6,13 +6,20 @@ public class Controller {
     private String controllerName;
     private String ipAdress;
 
+
+
+    private String CONTROLLER_URL;
     public Controller(String apiKey, String controllerName, String ipAdress) {
         this.apiKey = apiKey;
         this.controllerName = controllerName;
         this.ipAdress = ipAdress;
         this.id++;
-    }
+        this.CONTROLLER_URL = ipAdress + "/things/" + controllerName + "/";
 
+    }
+    public String getControllerUrl() {
+        return CONTROLLER_URL;
+    }
     public static int getId() {
         return id;
     }

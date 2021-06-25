@@ -25,12 +25,14 @@ import android.widget.Toast;
 
 import com.google.common.util.concurrent.ListenableFuture;
 import com.google.gson.Gson;
+import com.google.gson.JsonParseException;
 
 import java.util.concurrent.ExecutionException;
 
 public class ScannerQR extends AppCompatActivity {
     private static final int PERMISSION_REQUEST_CAMERA = 0;
     private PreviewView previewView;
+    private Controller controller;
     private ListenableFuture<ProcessCameraProvider> cameraProviderFuture;
     private Button qrCodeFoundButton;
     private String qrCode;
@@ -49,7 +51,14 @@ public class ScannerQR extends AppCompatActivity {
                 Toast.makeText(getApplicationContext(), "QR Kod zeskanowany", Toast.LENGTH_SHORT).show();
                 Log.i(ScannerQR.class.getSimpleName(), "QR Code Found: " + qrCode);
 
-                Controller controller = gson.fromJson(qrCode, Controller.class);
+                try {
+                    controller = gson.fromJson(qrCode, Controller.class);
+                    RetrofitClient.setController(controller);
+                }
+                catch (JsonParseException e) {
+                    controller = null;
+                    Toast.makeText(getApplicationContext(), "QR Kod jest nieprawidłowy", Toast.LENGTH_SHORT).show();
+                }
 
                 Log.i(ScannerQR.class.getSimpleName(), "api readed from qr code " + controller.getApiKey());
                 Log.i(ScannerQR.class.getSimpleName(), "ip readed from qr code " + controller.getIpAdress());
