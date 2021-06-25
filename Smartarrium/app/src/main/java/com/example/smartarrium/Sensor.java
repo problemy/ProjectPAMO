@@ -2,6 +2,9 @@ package com.example.smartarrium;
 
 import com.google.gson.annotations.SerializedName;
 
+    /*
+    * Model the model class with getters/setters
+    */
 public class Sensor {
     private boolean lamp;
     private boolean heating;
@@ -17,7 +20,6 @@ public class Sensor {
     private double  targetNightTemperature;
     private boolean scheduleModeOn;
 
-    //private int id;
 
     public Sensor(boolean lamp,boolean heating,boolean motion,double pressure,double  temperature,
                   int humidity,int sunriseHour, int sunriseMinute, int nightfallHour, int nightfallMinute,
