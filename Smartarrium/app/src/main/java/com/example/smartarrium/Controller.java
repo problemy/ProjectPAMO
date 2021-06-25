@@ -1,5 +1,8 @@
 package com.example.smartarrium;
-
+/*
+* Class represents model of ESP8266 controller
+*
+* */
 public class Controller {
     private static int  id = 0;
     private String apiKey;
