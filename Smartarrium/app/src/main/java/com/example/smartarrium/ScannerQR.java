@@ -51,18 +51,17 @@ public class ScannerQR extends AppCompatActivity {
                 Toast.makeText(getApplicationContext(), "QR Kod zeskanowany", Toast.LENGTH_SHORT).show();
                 Log.i(ScannerQR.class.getSimpleName(), "QR Code Found: " + qrCode);
 
+
                 try {
                     controller = gson.fromJson(qrCode, Controller.class);
-                    RetrofitClient.setController(controller);
+                    Controller.setControllerUrl(controller.getIpAdress(), controller.getControllerName());
                 }
                 catch (JsonParseException e) {
                     controller = null;
                     Toast.makeText(getApplicationContext(), "QR Kod jest nieprawidłowy", Toast.LENGTH_SHORT).show();
                 }
 
-                Log.i(ScannerQR.class.getSimpleName(), "api readed from qr code " + controller.getApiKey());
-                Log.i(ScannerQR.class.getSimpleName(), "ip readed from qr code " + controller.getIpAdress());
-                Log.i(ScannerQR.class.getSimpleName(), "name readed from qr code " + controller.getControllerName());
+
                 if(controller != null){
                     Intent homeIntent = new Intent(ScannerQR.this, MainActivity.class);
                     startActivity(homeIntent);
