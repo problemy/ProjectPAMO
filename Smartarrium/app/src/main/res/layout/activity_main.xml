@@ -3,30 +3,13 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:orientation="vertical" >
-    tools:context=".MainActivity">
+
 
     <TextView
         android:id="@+id/text_view_result"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"/>
-
-
-    <Button
-        android:id="@+id/lampButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:background="@color/black"
-        android:visibility="invisible"
-        android:text="@string/on_off_lamp" />
-    <Button
-        android:id="@+id/scheduleButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:background="@color/black"
-        android:text="@string/set_scheduler" />
 
     <Button
         android:id="@+id/refreshButton"
@@ -35,6 +18,27 @@
         android:layout_gravity="center"
         android:background="@color/black"
         android:text="@string/refresh" />
+    <Button
+        android:id="@+id/scheduleButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:layout_gravity="center"
+        android:background="@color/black"
+        android:text="@string/set_scheduler" />
+
+
+
+    <Button
+        android:id="@+id/manualButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="15dp"
+        android:background="@color/black"
+        android:text="@string/manual" />
+
+
 
 
 </LinearLayout>
