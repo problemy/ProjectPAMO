@@ -13,7 +13,11 @@
         android:text="@string/set_scheduler"/>
 
     <TextView
+
+        android:id="@+id/SunriseHour"
+
         android:labelFor="@+id/SunriseHourEt"
+
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
@@ -33,6 +37,8 @@
         android:textColor="@color/black" />
 
     <TextView
+
+        android:id="@+id/SunriseMinute"
         android:labelFor="@+id/SunriseMinuteEt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -51,6 +57,7 @@
         android:textColor="@color/black"
          />
     <TextView
+        android:id="@+id/DayTemperature"
         android:labelFor="@+id/DayTemperatureEt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -70,6 +77,7 @@
         />
 
     <TextView
+        android:id="@+id/SunsetHour"
         android:labelFor="@+id/SunsetHourEt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -88,6 +96,7 @@
         android:importantForAutofill="no"
         />
     <TextView
+        android:id="@+id/nightfallMinute"
         android:labelFor="@+id/SunsetMinuteEt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -106,6 +115,7 @@
         android:textColor="@color/black"
         />
     <TextView
+        android:id="@+id/temperatureAtNight"
         android:labelFor="@+id/NightTemperatureEt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
