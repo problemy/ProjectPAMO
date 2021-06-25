@@ -25,7 +25,10 @@ public class QRCodeImageAnalyzer implements ImageAnalysis.Analyzer {
     public QRCodeImageAnalyzer(QRCodeFoundListener listener) {
         this.listener = listener;
     }
-
+    /*
+    * Method is using com.google.zxing.qrcode.QRCodeReader algorithm for decoding
+    *  qr code byte by byte
+    * */
     @Override
     public void analyze(@NonNull ImageProxy image) {
         if (image.getFormat() == YUV_420_888 || image.getFormat() == YUV_422_888 || image.getFormat() == YUV_444_888) {

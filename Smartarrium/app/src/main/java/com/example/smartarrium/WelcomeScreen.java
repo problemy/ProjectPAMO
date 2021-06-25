@@ -11,6 +11,12 @@ import com.example.smartarrium.MainActivity;
 public class WelcomeScreen extends AppCompatActivity {
     public static int SPLASH_TIME_OUT = 2000;
 
+    /**
+     *
+     *
+     * @see
+     */
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

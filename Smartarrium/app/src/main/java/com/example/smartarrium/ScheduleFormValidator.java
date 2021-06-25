@@ -6,7 +6,10 @@ import android.widget.Toast;
 public class ScheduleFormValidator {
 
     private int SunriseHour,SunriseMinute,DayTemperature, SunsetHour,SunsetMinute,NightTemperature;
-
+    /*
+    * method validate input if itsatisfy hardcoded requirements
+    * @return String which is hint also
+    * */
     static String  validate(int SunriseHour, int SunriseMinute, int DayTemperature,
                     int SunsetHour, int SunsetMinute, int NightTemperature) {
         String content = "";

@@ -37,6 +37,15 @@ public class ScannerQR extends AppCompatActivity {
     private Button qrCodeFoundButton;
     private String qrCode;
     private Gson gson = new Gson();
+
+    /**
+     * Method is running a QR code scanner onCreating activity
+     * trying to parse scanned qr code to Controller Model
+     * if it is wrong it shows toast with proper information
+     * after parsing model starts new activity - MainActivity
+     * @cameraProviderFuture Retrieves the ProcessCameraProvider associated with the
+     * current process and assign it to var
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -74,7 +83,10 @@ public class ScannerQR extends AppCompatActivity {
         cameraProviderFuture = ProcessCameraProvider.getInstance(this);
         requestCamera();
     }
-
+    /**
+     * Method initialize the preview from the camera using a PRocessCameraPrivider
+     * from androidx.camera.lifecycle
+     */
     private void startCamera() {
         cameraProviderFuture.addListener(() -> {
             try {
@@ -85,7 +97,12 @@ public class ScannerQR extends AppCompatActivity {
             }
         }, ContextCompat.getMainExecutor(this));
     }
-
+    /**
+     * Method sets up and initiate the camera preview tob be displayed inside
+     * PreviewView
+     *
+     * @param cameraProvider ProcessCameraPrivider from androidx.camera.lifecycle
+     */
     private void bindCameraPreview(@NonNull ProcessCameraProvider cameraProvider) {
         previewView.setPreferredImplementationMode(PreviewView.ImplementationMode.SURFACE_VIEW);
 
@@ -119,6 +136,10 @@ public class ScannerQR extends AppCompatActivity {
 
         Camera camera = cameraProvider.bindToLifecycle((LifecycleOwner)this, cameraSelector, imageAnalysis, preview);
     }
+    /**
+     * Method request the user’s consent to use the camera permission at run time
+     * through a prompt started from our activity
+     */
     private void requestCamera() {
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED) {
             startCamera();
@@ -130,7 +151,10 @@ public class ScannerQR extends AppCompatActivity {
             }
         }
     }
-
+    /*
+    * Method to check if the user has provided consent to use the camera in the popup,
+    * if so we will then call the “startCamera()” method.
+    * */
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
