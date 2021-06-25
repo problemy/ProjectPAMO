@@ -15,12 +15,13 @@ public class Sensor {
     private int nightfallMinute;
     private double  targetDayTemperature;
     private double  targetNightTemperature;
+    private boolean scheduleModeOn;
 
     //private int id;
 
     public Sensor(boolean lamp,boolean heating,boolean motion,double pressure,double  temperature,
                   int humidity,int sunriseHour, int sunriseMinute, int nightfallHour, int nightfallMinute,
-                  double targetDayTemperature, double targetNightTemperature){
+                  double targetDayTemperature, double targetNightTemperature, boolean scheduleModeOn){
         this.lamp = lamp;
         this.heating = heating;
         this.motion = motion;
@@ -33,6 +34,7 @@ public class Sensor {
         this.nightfallMinute = nightfallMinute;
         this.targetDayTemperature = targetDayTemperature;
         this.targetNightTemperature = targetNightTemperature;
+        this.scheduleModeOn = scheduleModeOn;
 
 
     }
@@ -85,4 +87,8 @@ public class Sensor {
     public int setNightfallMinute(int nightfallMinute) { return  nightfallMinute; }
 
 
+    public boolean isScheduleModeOn() {
+        return scheduleModeOn;
+    }
+    public boolean setScheduleModeOn(boolean scheduleModeOn) {return  this.scheduleModeOn = scheduleModeOn;}
 }
