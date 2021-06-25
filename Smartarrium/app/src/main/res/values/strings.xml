@@ -11,6 +11,11 @@
     <string name="start_night_minute">Minuta rozpoczęcia nocy:</string>
     <string name="night_temperature">Temperatura w nocy:</string>
     <string name="set">Ustaw</string>
+    <string name="manual">Tryb manualny</string>
+    <string name="temperature">Temperatura</string>
+    <string name="off">Wyłączona</string>
+    <string name="on">Włączona</string>
+    <string name="lamp">Oświetlenie</string>
     <string name="connect">Połącz się</string>
     <string name="podaj_ip_sterownika">Podaj ip sterownika:</string>
     <string name="zeskanuj_kod_qr">Zeskanuj kod QR</string>
@@ -18,4 +23,5 @@
     <string name="wpisz_dane_r_cznie">Wpisz dane ręcznie</string>
     <string name="podaj_klucz_webthings_api">Podaj klucz Webthings API</string>
     <string name="podaj_nazw_sterownika">Podaj nazwę sterownika:</string>
+
 </resources>

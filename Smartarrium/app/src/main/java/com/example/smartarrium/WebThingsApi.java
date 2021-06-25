@@ -20,13 +20,18 @@ public interface WebThingsApi {
     Call<Sensor> getSensors();
 
 
-    @Headers({accept,content_type,authorization
-})
+
+    @Headers({accept,content_type,authorization})
     @PUT("properties/lamp")
     Call<Sensor> updateLamp(@Body Sensor sensor);
     @Headers({accept,content_type,authorization})
     @PUT("properties/heating")
     Call<Sensor> updateHeating(@Body Sensor sensor);
+
+    @Headers({accept,content_type,authorization})
+    @PUT("properties/scheduleModeOn")
+    Call<Sensor> updateScheduleMode(@Body Sensor sensor);
+
 
     @Headers({accept,content_type,authorization})
     @PUT("properties/sunriseMinute")
@@ -51,4 +56,7 @@ public interface WebThingsApi {
     @Headers({accept,content_type,authorization})
     @PUT("properties/nightfallMinute")
     Call<Sensor> setNightfallMinute(@Body Sensor sensor);
+   @Headers({accept,content_type,authorization})
+    @PUT("properties/lamp")
+    Call<Sensor> setLamp(@Body Sensor sensor);
 }
