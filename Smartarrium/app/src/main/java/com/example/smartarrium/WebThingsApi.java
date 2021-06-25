@@ -8,6 +8,9 @@ import retrofit2.Call;
 import retrofit2.http.Headers;
 import retrofit2.http.PUT;
 
+/*
+* Interface where we define all the URLs with the http request type and parameters.
+*/
 public interface WebThingsApi {
 
     String accept = "accept: application/json";
